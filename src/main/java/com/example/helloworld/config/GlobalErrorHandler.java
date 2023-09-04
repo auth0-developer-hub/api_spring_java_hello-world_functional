@@ -47,4 +47,10 @@ public record GlobalErrorHandler(ObjectMapper mapper) {
         response.getWriter().write(json);
         response.flushBuffer();
     }
+
+    @Cacheable
+    public ServerResponse handleAccessDenied(final Throwable error, final ServerRequest request) {
+        return ServerResponse.status(HttpStatus.FORBIDDEN)
+                .body(ErrorMessage.from("Permission denied"));
+    }
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.function.ServerRequest;
 import org.springframework.web.servlet.function.ServerResponse;
 
+import com.example.helloworld.annotations.CanReadAdminMessages;
 import com.example.helloworld.services.MessageService;
 
 import lombok.RequiredArgsConstructor;
@@ -32,6 +33,7 @@ public class MessageHandler {
     }
 
     @Cacheable
+    @CanReadAdminMessages
     public ServerResponse getAdmin(final ServerRequest request) {
         final var message = messageService.getAdminMessage();
 
